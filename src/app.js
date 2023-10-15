@@ -1,6 +1,6 @@
 import express from "express";
 import conecta from "./config/dbConnect.js";
-import jogo from "./models/Jogo.js";
+import routes from "./routes/index.js";
 
 const conn = await conecta();
 
@@ -13,16 +13,7 @@ conn.once("open", () => {
 });
 
 const app = express();
-app.use(express.json());
-
-app.get("/", (req, res) => {
-    res.status(200).send("teste Node.js express");
-});
-
-app.get("/jogos", async (req, res) => {
-    const listaJogos = await jogo.find({});
-    res.status(200).json(listaJogos);
-});
+routes(app);
 
 app.get("/jogos/:id", (req, res) => {
     const index = buscaJogo(req.params.id);
@@ -31,7 +22,7 @@ app.get("/jogos/:id", (req, res) => {
 
 app.post("/jogos", (req, res) => {
     jogos.push(req.body);
-    res.status(201).send("Jogo cadastrado com sucesso!");
+
 });
 
 app.put("/jogos/:id", (req, res) => {
