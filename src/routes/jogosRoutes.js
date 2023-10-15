@@ -1,12 +1,12 @@
 import express from "express";
 import JogoController from "../controllers/jogoController.js";
 
-const routes = express.Router();
+const jogos = express.Router();
 
-routes.get("/jogos", JogoController.listarJogos);
-routes.get("/jogos/:id", JogoController.buscaJogo);
-routes.post("/jogos", JogoController.cadastrarJogos);
-routes.put("/jogos/:id", JogoController.atualizaJogo);
-routes.delete("/jogos/:id", JogoController.deleteJogo);
+jogos.get("/jogos", JogoController.listarJogos);
+jogos.get("/jogos/:id", JogoController.buscaJogo);
+jogos.post("/jogos", JogoController.cadastrarJogos);
+jogos.put("/jogos/:id", JogoController.atualizaJogo);
+jogos.delete("/jogos/:id", JogoController.deleteJogo);
 
-export default routes;
+export default jogos;
