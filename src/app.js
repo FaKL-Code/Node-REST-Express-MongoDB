@@ -38,5 +38,10 @@ app.post("/jogos", (req, res) => {
     res.status(201).send("Jogo cadastrado com sucesso!");
 });
 
+app.put("/jogos/:id", (req, res) => {
+    const index = buscaJogo(req.params.id);
+    jogos[index].titulo = req.body.titulo;
+    res.status(200).json(jogos);
+});
 
 export default app;
