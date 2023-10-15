@@ -1,31 +1,27 @@
 import express from "express";
+import conecta from "./config/dbConnect.js";
+import jogo from "./models/Jogo.js";
+
+const conn = await conecta();
+
+conn.on("error", (erro) => {
+    console.error("deu merda", erro);
+});
+
+conn.once("open", () => {
+    console.log("deu bom");    
+});
 
 const app = express();
 app.use(express.json());
-
-const jogos = [
-    {
-        "id": 1,
-        "titulo": "CS2"
-    },
-    {
-        "id": 2,
-        "titulo": "Dota 2"
-    }
-]
-
-function buscaJogo(id) {
-    return jogos.findIndex(jogo => {
-        return jogo.id === Number(id);
-    });
-}
 
 app.get("/", (req, res) => {
     res.status(200).send("teste Node.js express");
 });
 
-app.get("/jogos", (req, res) => {
-    res.status(200).json(jogos);
+app.get("/jogos", async (req, res) => {
+    const listaJogos = await jogo.find({});
+    res.status(200).json(listaJogos);
 });
 
 app.get("/jogos/:id", (req, res) => {
