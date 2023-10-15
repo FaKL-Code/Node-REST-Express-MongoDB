@@ -44,4 +44,10 @@ app.put("/jogos/:id", (req, res) => {
     res.status(200).json(jogos);
 });
 
+app.delete("/jogos/:id", (req, res) => {
+    const index = buscaJogo(req.params.id);
+    jogos.splice(index, 1);
+    res.status(200).send("Jogo removido com sucesso!");
+});
+
 export default app;
