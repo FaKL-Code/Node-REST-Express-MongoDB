@@ -24,6 +24,7 @@ app.get("/jogos", (req, res) => {
 
 app.post("/jogos", (req, res) => {
     jogos.push(req.body);
+    res.status(201).send("Jogo cadastrado com sucesso!");
 });
 
 export default app;
