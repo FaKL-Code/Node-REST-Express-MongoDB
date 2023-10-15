@@ -49,6 +49,16 @@ class JogoController {
             res.status(500).json({ message: `${e.message} - falha ao deletar jogo`})
         }
     }
+
+    static async listarJogosPorCategoria(req, res) {
+        const categoria = req.query.categoria;
+        try {
+            const jogosPorCategoria = await jogo.find({ categoria: categoria });
+            res.status(200).json(jogosPorCategoria);
+        } catch (e) {
+            res.status(500).json({ message: `${e.message} - falha na busca` });
+        }
+    }
 };
 
 export default JogoController;
