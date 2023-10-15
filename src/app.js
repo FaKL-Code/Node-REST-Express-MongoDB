@@ -15,26 +15,4 @@ conn.once("open", () => {
 const app = express();
 routes(app);
 
-app.get("/jogos/:id", (req, res) => {
-    const index = buscaJogo(req.params.id);
-    res.status(200).json(jogos[index]);
-});
-
-app.post("/jogos", (req, res) => {
-    jogos.push(req.body);
-
-});
-
-app.put("/jogos/:id", (req, res) => {
-    const index = buscaJogo(req.params.id);
-    jogos[index].titulo = req.body.titulo;
-    res.status(200).json(jogos);
-});
-
-app.delete("/jogos/:id", (req, res) => {
-    const index = buscaJogo(req.params.id);
-    jogos.splice(index, 1);
-    res.status(200).send("Jogo removido com sucesso!");
-});
-
 export default app;
