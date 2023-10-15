@@ -7,4 +7,5 @@ const publisherSchema = new mongoose.Schema({
 
 const publisher = mongoose.model("publishers", publisherSchema);
 
-export default { publisher, publisherSchema };
+export { publisher, publisherSchema };
+

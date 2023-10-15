@@ -1,4 +1,4 @@
-import publisher from "../models/Publisher.js";
+import { publisher } from "../models/Publisher.js";
 
 class PublisherController {
 

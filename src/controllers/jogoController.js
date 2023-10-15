@@ -1,5 +1,5 @@
 import jogo from "../models/Jogo.js";
-
+import { publisher } from "../models/Publisher.js";
 class JogoController {
 
     static async listarJogos(req, res) {
@@ -12,9 +12,12 @@ class JogoController {
     }
 
     static async cadastrarJogos(req, res) {
+        const novoJogo = req.body;
         try {
-            const novoJogo = await jogo.create(req.body);
-            res.status(201).json({ message: "Criado com sucesso!", jogo: novoJogo });
+            const publisherFound = await publisher.findById(novoJogo.publisher);
+            const jogoCompleto = { ...novoJogo, publisher: { ...publisherFound._doc } };
+            const jogoCriado = await jogo.create(jogoCompleto);
+            res.status(201).json({ message: "Criado com sucesso!", jogo: jogoCriado });
         } catch (e) {
             res.status(500).json({ message: `${e.message} - falha ao cadastrar jogo` });
         }
