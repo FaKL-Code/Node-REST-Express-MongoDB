@@ -46,7 +46,7 @@ class JogoController {
             await jogo.findByIdAndDelete(req.params.id);
             res.status(200).json({ message: "livro excluido com sucesso" });
         } catch (e) {
-            res.status(500).json({ message: `${e.message} - falha ao deletar jogo`})
+            res.status(500).json({ message: `${e.message} - falha ao deletar jogo` });
         }
     }
 
@@ -59,6 +59,6 @@ class JogoController {
             res.status(500).json({ message: `${e.message} - falha na busca` });
         }
     }
-};
+}
 
 export default JogoController;
